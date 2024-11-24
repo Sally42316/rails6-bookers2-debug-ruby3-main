@@ -10,11 +10,23 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+
+
   <body>
     <%= render 'layouts/header' %>
+
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <%= value %>
+      </div>
+    <% end %>
+
+
       <main>
+      <%= yield %>
         <p id="notice"><%= notice %></p>
       </main>
+      
     <%= render 'layouts/footer' %>
   </body>
 </html>

@@ -14,7 +14,9 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to book_path(@book), notice: "You have created book successfully."
     else
+      flash[:notice] = "create error"
       @books = Book.all
+      @user = current_user
       render 'index'
     end
   end
@@ -41,6 +43,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title)
+    params.require(:book).permit(:title, :body)
   end
 end

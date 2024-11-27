@@ -11,9 +11,18 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 20 }, uniqueness: true
 
+  has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   
+
   
   def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+    if profile_image.attached?
+      profile_image
+    else
+      'no_image.jpg'
+    end
   end
+
+  
 end

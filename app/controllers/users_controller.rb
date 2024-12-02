@@ -3,17 +3,25 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-  @books = @user.books.order(id: :desc)
-  @book = Book.new
-  @today_book = @books.select { |book| book.created_at.to_date == Date.today }
-  @yesterday_book = @books.select { |book| book.created_at.to_date == Date.today - 1 }
- # 今週の投稿を取得する
- this_week_range = Date.today.all_week
- @this_week_book = @books.select { |book| this_week_range.cover?(book.created_at.to_date) }
+    @books = @user.books.order(id: :desc)
+    @book = Book.new
+    @today_book =  @books.created_today
+    @yesterday_book = @books.created_yesterday
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_last_week
+  end
 
- # 先週の投稿を取得する
- last_week_range = (Date.today - 1.week).all_week
- @last_week_book = @books.select { |book| last_week_range.cover?(book.created_at.to_date) }
+  def search
+    # これ一式で非同期検索できる
+    @user = User.find(params[:user_id])
+    @books = @user.books
+    @book = Book.new
+    if params[:created_at] == ""
+      @search_book = "日付を選択してください"
+    else
+      create_at = params[:created_at]
+      @search_book = @books.where(['created_at LIKE ? ', "#{create_at}%"]).count
+    end
   end
 
   def index

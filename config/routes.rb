@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resource :favorite, only: [:create, :destroy]
   end
-  resources :users, only: [:index, :show, :edit, :update, :new, :create]
+
+  resources :users, only: [:index, :show, :edit, :update, :new, :create] do
+    # ↓非同期の検索
+    get "search" => "users#search"
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

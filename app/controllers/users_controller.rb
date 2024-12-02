@@ -3,8 +3,17 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = @user.books
-    @book = Book.new
+  @books = @user.books.order(id: :desc)
+  @book = Book.new
+  @today_book = @books.select { |book| book.created_at.to_date == Date.today }
+  @yesterday_book = @books.select { |book| book.created_at.to_date == Date.today - 1 }
+ # 今週の投稿を取得する
+ this_week_range = Date.today.all_week
+ @this_week_book = @books.select { |book| this_week_range.cover?(book.created_at.to_date) }
+
+ # 先週の投稿を取得する
+ last_week_range = (Date.today - 1.week).all_week
+ @last_week_book = @books.select { |book| last_week_range.cover?(book.created_at.to_date) }
   end
 
   def index

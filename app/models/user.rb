@@ -13,6 +13,11 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+
+  # 1対多のDM
+  has_many :entries, dependent: :destroy
+  has_many :messages, dependent: :destroy
+  has_many :rooms, through: :entries
   
 
   

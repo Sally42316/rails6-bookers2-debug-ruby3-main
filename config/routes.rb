@@ -13,6 +13,10 @@ Rails.application.routes.draw do
     resource :favorite, only: [:create, :destroy]
   end
 
+  # 1対多のDM
+  resources :messages, only: [:create]
+  resources :rooms, only: [:create, :show]
+
   resources :users, only: [:index, :show, :edit, :update, :new, :create] do
     # ↓非同期の検索
     get "search" => "users#search"

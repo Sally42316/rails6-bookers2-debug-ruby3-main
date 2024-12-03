@@ -18,7 +18,9 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :rooms, through: :entries
-  
+  def following?(user)
+    followings.include?(user)
+  end
 
   
   def get_profile_image

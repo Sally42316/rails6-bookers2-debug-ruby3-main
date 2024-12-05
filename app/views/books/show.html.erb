@@ -31,10 +31,14 @@
           <<%= render "favorites/btn", book:@book %>
           </td>
 
+          <td>閲覧数 <%= @book.view_counts.count %></td>
+
 
           <td id="comment_counter">
              <%= render "comments/counter", book: @book %>
            </td>
+
+           
           
           
           <% if @book.user == current_user %>
@@ -50,6 +54,8 @@
          <%= render "comments/index", book: @book %>
        </div>
        <%= render "comments/form", book: @book, comment: @comment %>
+       
+       
 
 
     </div>

@@ -2,6 +2,10 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    unless ViewCount.find_by(user_id: current_user.id, book_id: @book.id)
+      current_user.view_counts.create(book_id: @book.id)
+      # 上記2行があることで「1ユーザーが 同じbookを複数回閲覧しても、閲覧数を1」に
+    end
     @user = @book.user
     @book_new = Book.new
     @comment = Comment.new

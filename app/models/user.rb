@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
 
   # 1対多のDM
   has_many :entries, dependent: :destroy

@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books.order(id: :desc)
     @book = Book.new
+    @users = User.all
     
     #過去の投稿数カウントに使用 
     @today_book =  @books.created_today
@@ -48,6 +49,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+    
   end
 
   def edit

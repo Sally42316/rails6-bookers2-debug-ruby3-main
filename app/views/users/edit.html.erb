@@ -11,6 +11,7 @@
       <h2>User info</h2>
       <%= form_with model:@user, local:true do |f| %>
       <%= render 'layouts/errors', obj: @user %>
+      <%= render 'relationships/follow_list', users: @users %>
 
         <div class="form-group">
           <%= f.label :name %>

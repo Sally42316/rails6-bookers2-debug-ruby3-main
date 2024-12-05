@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     @user = @book.user
     @book_new = Book.new
     @comment = Comment.new
+    @users = User.all
   end
 
   def index
@@ -16,6 +17,7 @@ class BooksController < ApplicationController
       a.favorites.where(created_at: from...to).size
     }
     @book = Book.new
+    @users = User.all
   end
 
   def create

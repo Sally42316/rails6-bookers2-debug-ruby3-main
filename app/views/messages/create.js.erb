@@ -1,7 +1,6 @@
 $('.chats').append(`
     <div class="chat-fukidashi" style='text-align: right;'>
-      <strong><%= j @message.content %></strong><br>
-      ${'<%= created_at %>'}
+        <strong><%= j @message.content %></strong><br>
     </div>
 `)
 $('input[type=text]').val("")

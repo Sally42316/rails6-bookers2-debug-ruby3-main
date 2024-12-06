@@ -38,12 +38,6 @@
               <li style="list-style: none;"><%= user.name %></li>
               <% end %>
             </td>
-
-
-
-
-
-
             <td>
             <% if @group.is_owned_by?(current_user) %>
             　　<%= link_to 'Edit', edit_group_path(@group), class: "btn btn-sm btn-success" %>
@@ -52,6 +46,9 @@
             <% else %>
             　　<%= link_to 'Join this group', group_group_users_path(@group), method: :post, class: "btn btn-sm btn-success" %>
             <% end %>
+            </td>
+            <td>
+            <%= link_to 'Notice an Event',group_new_mail_path(@group), class: "btn btn-sm btn-info" %>
             </td>
           </tr>
         </tbody>

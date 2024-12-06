@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     get "search" => "users#search"
   end
 
+  # グループDM
+  resources :groups, only: [:new, :index, :show, :create, :edit, :update]
+
   # フォローフォロワー
     # ネストさせる
     resources :users do

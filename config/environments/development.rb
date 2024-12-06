@@ -80,8 +80,8 @@ config.action_mailer.smtp_settings = {
  address:              'smtp.gmail.com',
  port:                  587,
  domain:               'gmail.com',
- user_name:            'メアド',
- password:             'アプリパスワードを記入',
+ user_name:            'h***.sc0423**@****.com',
+ password:             'sjve bjce chtq hhjn',
  authentication:       'login',
  enable_starttls_auto:  true
 }

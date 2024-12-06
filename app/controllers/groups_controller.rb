@@ -14,11 +14,17 @@ class GroupsController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def send_mail(mail_title,mail_content,group_users) #メソッドに対して引数を設定
-      @mail_title = mail_title
-      @mail_content = mail_content
-      mail bcc: group_users.pluck(:email), subject: mail_title
-      end
+    def new_mail
+      @group = Group.find(params[:group_id])
+    end
+    
+    def send_mail
+      @group = Group.find_by(id: params[:group_id])  # Group.findをGroup.find_by(id: ...)に変更し、nilの場合はnilを返すように変更
+    group_users = @group.users
+    @mail_title = params[:mail_title]
+    @mail_content = params[:mail_content]
+    ContactMailer.send_mail(@mail_title, @mail_content, group_users).deliver
+    end
   
     def new
       @group = Group.new

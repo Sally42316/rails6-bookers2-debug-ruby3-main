@@ -1,4 +1,5 @@
-<%= form_with model:book,local:true do |f| %>
+
+<%= form_with model: book, local: true do |f| %>
   <div class="form-group">
     <%= f.label :title %>
     <%= f.text_field :title, class: 'form-control book_title' %>
@@ -7,8 +8,8 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
+  
 
-  <div>
   <% if book.id.nil? %>
     <div class="form-group" id="star">
       <%= f.label :star %>
@@ -35,9 +36,7 @@
       <%= render "static_rate", book: book %>
     </div>
   <% end %>
-  </div>
-
-
+  
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>

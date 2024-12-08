@@ -13,6 +13,8 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+  attr_accessor :rate
+
   # ↓本の投稿数を数えるので、book.rbに記述してく。
   # scope :スコープの名前, -> { 条件式 }
   # モデル側であらかじめ特定の条件式に対して名前をつけて定義し、
